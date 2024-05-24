@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Price Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+
+        .calculator-field {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .calculator-field:not(.active) {
+            opacity: 0.5;
+        }
+
+        .calculator-field.active {
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+            opacity: 1;
+        }
+
+        .calculator-field .window-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .calculator-field .content {
+            flex-grow: 1;
+        }
+
+        .calculator-field .add-size-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .sub-fields {
+            margin-top: 20px;
+        }
+
+        .btn-column {
+            margin-left: 10px;
+        }
+
+        .price-display {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .price-section h4 {
+            margin-top: 0;
+        }
+
+        .global-options {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="global-options">
+            <h4>Global Options</h4>
+            <div class="form-group">
+                <label for="color-select">Color:</label>
+                <select id="color-select" class="form-control">
+                    <option value="white">White</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="argon-gas">Argon Gas:</label>
+                <select id="argon-gas" class="form-control">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="construction-type">Construction Type:</label>
+                <select id="construction-type" class="form-control">
+                    <option value="new">New Construction</option>
+                    <option value="replacement">Replacement</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="installation">Installation:</label>
+                <select id="installation" class="form-control">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Double Hung -->
+                <div class="calculator-field" data-type="Double Hung">
+                    <img class="window-image" src="https://example.com/double-hung.jpg" alt="Double Hung">
+                    <div class="content">
+                        <input class="js-input-select" type="checkbox" name="WindowTypes" id="WindowType18"
+                            value="Double Hung" data-gtm-form-interact-field-id="0" hidden>
+                        <label class="field-ui-toggle" for="WindowType18">
+                            <h5>Double Hung</h5>
+                        </label>
+                        <fieldset class="sub-fields" disabled="">
+                            <div class="field-row js-field-row">
+                                <label class="field-group qty">
+                                    <strong>QTY x</strong>
+                                    <input type="number" class="form-control qty-input" min="1" value="1">
+                                </label>
+                                <label class="field-group ui">
+                                    <strong>UI:</strong>
+                                    <select class="form-control ui-select">
+                                        <option value="28">Small (under 70 ui)</option>
+                                        <option value="31" selected>Medium (70-90 ui)</option>
+                                        <option value="34">Large (90+ ui)</option>
+                                    </select>
+                                </label>
+                                <span class="btn-column">
+                                    <button type="button" class="js-remove-row btn btn-danger btn-sm">Remove</button>
+                                </span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button type="button" class="js-add-row btn btn-primary btn-sm add-size-btn">Add Size</button>
+                </div>
+
+                <!-- Slider -->
+                <div class="calculator-field" data-type="Slider">
+                    <img class="window-image" src="64420857.webp" alt="Slider">
+                    <div class="content">
+                        <input class="js-input-select" type="checkbox" name="WindowTypes" id="WindowTypeSlider"
+                            value="Slider" data-gtm-form-interact-field-id="1" hidden>
+                        <label class="field-ui-toggle" for="WindowTypeSlider">
+                            <h5>Slider</h5>
+                        </label>
+                        <fieldset class="sub-fields" disabled="">
+                            <div class="field-row js-field-row">
+                                <label class="field-group qty">
+                                    <strong>QTY x</strong>
+                                    <input type="number" class="form-control qty-input" min="1" value="1">
+                                </label>
+                                <label class="field-group ui">
+                                    <strong>UI:</strong>
+                                    <select class="form-control ui-select">
+                                        <option value="28">Small (under 70 ui)</option>
+                                        <option value="31" selected>Medium (70-90 ui)</option>
+                                        <option value="34">Large (90+ ui)</option>
+                                    </select>
+                                </label>
+                                <span class="btn-column">
+                                    <button type="button" class="js-remove-row btn btn-danger btn-sm">Remove</button>
+                                </span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button type="button" class="js-add-row btn btn-primary btn-sm add-size-btn">Add Size</button>
+                </div>
+
+                <!-- Picture Window -->
+                <div class="calculator-field" data-type="Picture Window">
+                    <img class="window-image" src="https://example.com/picture-window.jpg" alt="Picture Window">
+                    <div class="content">
+                        <input class="js-input-select" type="checkbox" name="WindowTypes" id="WindowTypePicture"
+                            value="Picture Window" data-gtm-form-interact-field-id="2" hidden>
+                        <label class="field-ui-toggle" for="WindowTypePicture">
+                            <h5>Picture Window</h5>
+                        </label>
+                        <fieldset class="sub-fields" disabled="">
+                            <div class="field-row js-field-row">
+                                <label class="field-group qty">
+                                    <strong>QTY x</strong>
+                                    <input type="number" class="form-control qty-input" min="1" value="1">
+                                </label>
+                                <label class="field-group ui">
+                                    <strong>UI:</strong>
+                                    <select class="form-control ui-select">
+                                        <option value="28">Small (under 70 ui)</option>
+                                        <option value="31" selected>Medium (70-90 ui)</option>
+                                        <option value="34">Large (90+ ui)</option>
+                                    </select>
+                                </label>
+                                <span class="btn-column">
+                                    <button type="button" class="js-remove-row btn btn-danger btn-sm">Remove</button>
+                                </span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button type="button" class="js-add-row btn btn-primary btn-sm add-size-btn">Add Size</button>
+                </div>
+
+                <!-- Single Hung -->
+                <div class="calculator-field" data-type="Single Hung">
+                    <img class="window-image" src="https://example.com/single-hung.jpg" alt="Single Hung">
+                    <div class="content">
+                        <input class="js-input-select" type="checkbox" name="WindowTypes" id="WindowTypeSingle"
+                            value="Single Hung" data-gtm-form-interact-field-id="3" hidden>
+                        <label class="field-ui-toggle" for="WindowTypeSingle">
+                            <h5>Single Hung</h5>
+                        </label>
+                        <fieldset class="sub-fields" disabled="">
+                            <div class="field-row js-field-row">
+                                <label class="field-group qty">
+                                    <strong>QTY x</strong>
+                                    <input type="number" class="form-control qty-input" min="1" value="1">
+                                </label>
+                                <label class="field-group ui">
+                                    <strong>UI:</strong>
+                                    <select class="form-control ui-select">
+                                        <option value="28">Small (under 70 ui)</option>
+                                        <option value="31" selected>Medium (70-90 ui)</option>
+                                        <option value="34">Large (90+ ui)</option>
+                                    </select>
+                                </label>
+                                <span class="btn-column">
+                                    <button type="button" class="js-remove-row btn btn-danger btn-sm">Remove</button>
+                                </span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button type="button" class="js-add-row btn btn-primary btn-sm add-size-btn">Add Size</button>
+                </div>
+
+                <!-- Casement -->
+                <div class="calculator-field" data-type="Casement">
+                    <img class="window-image" src="https://example.com/casement.jpg" alt="Casement">
+                    <div class="content">
+                        <input class="js-input-select" type="checkbox" name="WindowTypes" id="WindowTypeCasement"
+                            value="Casement" data-gtm-form-interact-field-id="4" hidden>
+                        <label class="field-ui-toggle" for="WindowTypeCasement">
+                            <h5>Casement</h5>
+                        </label>
+                        <fieldset class="sub-fields" disabled="">
+                            <div class="field-row js-field-row">
+                                <label class="field-group qty">
+                                    <strong>QTY x</strong>
+                                    <input type="number" class="form-control qty-input" min="1" value="1">
+                                </label>
+                                <label class="field-group ui">
+                                    <strong>UI:</strong>
+                                    <select class="form-control ui-select">
+                                        <option value="28">Small (under 70 ui)</option>
+                                        <option value="31" selected>Medium (70-90 ui)</option>
+                                        <option value="34">Large (90+ ui)</option>
+                                    </select>
+                                </label>
+                                <span class="btn-column">
+                                    <button type="button" class="js-remove-row btn btn-danger btn-sm">Remove</button>
+                                </span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button type="button" class="js-add-row btn btn-primary btn-sm add-size-btn">Add Size</button>
+                </div>
+
+                <!-- Awning -->
+                <div class="calculator-field" data-type="Awning">
+                    <img class="window-image" src="https://example.com/awning.jpg" alt="Awning">
+                    <div class="content">
+                        <input class="js-input-select" type="checkbox" name="WindowTypes" id="WindowTypeAwning"
+                            value="Awning" data-gtm-form-interact-field-id="5" hidden>
+                        <label class="field-ui-toggle" for="WindowTypeAwning">
+                            <h5>Awning</h5>
+                        </label>
+                        <fieldset class="sub-fields" disabled="">
+                            <div class="field-row js-field-row">
+                                <label class="field-group qty">
+                                    <strong>QTY x</strong>
+                                    <input type="number" class="form-control qty-input" min="1" value="1">
+                                </label>
+                                <label class="field-group ui">
+                                    <strong>UI:</strong>
+                                    <select class="form-control ui-select">
+                                        <option value="28">Small (under 70 ui)</option>
+                                        <option value="31" selected>Medium (70-90 ui)</option>
+                                        <option value="34">Large (90+ ui)</option>
+                                    </select>
+                                </label>
+                                <span class="btn-column">
+                                    <button type="button" class="js-remove-row btn btn-danger btn-sm">Remove</button>
+                                </span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button type="button" class="js-add-row btn btn-primary btn-sm add-size-btn">Add Size</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="price-section">
+                    <h4>Prices</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">Vinyl Windows: $<span id="vinyl-price">0.00</span></li>
+                        <li class="list-group-item">Premium Vinyl Windows: $<span id="premium-vinyl-price">0.00</span></li>
+                        <li class="list-group-item">Fiberglass Windows: $<span id="fiberglass-price">0.00</span></li>
+                        <li class="list-group-item">Aluminum Windows: $<span id="aluminum-price">0.00</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        const prices = {
+            'Double Hung': { vinyl: 200, premiumVinyl: 250, fiberglass: 300, aluminum: 220 },
+            'Slider': { vinyl: 180, premiumVinyl: 230, fiberglass: 280, aluminum: 210 },
+            'Picture Window': { vinyl: 220, premiumVinyl: 270, fiberglass: 320, aluminum: 240 },
+            'Single Hung': { vinyl: 190, premiumVinyl: 240, fiberglass: 290, aluminum: 200 },
+            'Casement': { vinyl: 210, premiumVinyl: 260, fiberglass: 310, aluminum: 230 },
+            'Awning': { vinyl: 200, premiumVinyl: 250, fiberglass: 300, aluminum: 220 }
+        };
+
+        $(document).ready(function () {
+            function calculatePrices() {
+                let vinylTotal = 0;
+                let premiumVinylTotal = 0;
+                let fiberglassTotal = 0;
+                let aluminumTotal = 0;
+
+                const color = $('#color-select').val();
+                const argonGas = $('#argon-gas').val();
+                const constructionType = $('#construction-type').val();
+                const installation = $('#installation').val();
+
+                const colorMultiplier = color === 'other' ? 1.5 : 1;
+                const argonGasCost = argonGas === 'yes' ? 20 : 0;
+                const constructionMultiplier = constructionType === 'replacement' ? 1 : 1;
+                const installationCost = installation === 'yes'
+                    ? (constructionType === 'replacement' ? 250 : 100)
+                    : 0;
+
+                $('.calculator-field.active').each(function () {
+                    const type = $(this).data('type');
+                    const rows = $(this).find('.js-field-row');
+
+                    rows.each(function () {
+                        const qty = parseInt($(this).find('.qty-input').val(), 10);
+                        const ui = $(this).find('.ui-select').val();
+                        const basePrice = prices[type];
+
+                        let uiMultiplier = 1;
+                        if (ui == 28) {
+                            uiMultiplier = 1.15; // 15% increase for Small
+                        } else if (ui == 31) {
+                            uiMultiplier = 1.35; // 35% increase for Medium
+                        } else if (ui == 34) {
+                            uiMultiplier = 1.60; // 60% increase for Large
+                        }
+
+                        vinylTotal += qty * basePrice.vinyl * uiMultiplier * colorMultiplier * constructionMultiplier + argonGasCost * qty + installationCost * qty;
+                        premiumVinylTotal += qty * basePrice.premiumVinyl * uiMultiplier * colorMultiplier * constructionMultiplier + argonGasCost * qty + installationCost * qty;
+                        fiberglassTotal += qty * basePrice.fiberglass * uiMultiplier * colorMultiplier * constructionMultiplier + argonGasCost * qty + installationCost * qty;
+                        aluminumTotal += qty * basePrice.aluminum * uiMultiplier * colorMultiplier * constructionMultiplier + argonGasCost * qty + installationCost * qty;
+                    });
+                });
+
+                function getPriceRange(price) {
+                    const min = price * 0.8;
+                    const max = price * 1.2;
+                    return `${min.toFixed(2)} - ${max.toFixed(2)}`;
+                }
+
+                $('#vinyl-price').text(getPriceRange(vinylTotal));
+                $('#premium-vinyl-price').text(getPriceRange(premiumVinylTotal));
+                $('#fiberglass-price').text(getPriceRange(fiberglassTotal));
+                $('#aluminum-price').text(getPriceRange(aluminumTotal));
+            }
+
+            // Initialize prices
+            calculatePrices();
+
+            $('.calculator-field').click(function (e) {
+                if (!$(e.target).closest('button, input, select').length) {
+                    const checkbox = $(this).find('.js-input-select');
+                    checkbox.prop('checked', !checkbox.prop('checked'));
+                    $(this).toggleClass('active', checkbox.prop('checked'));
+
+                    const fieldset = $(this).find('fieldset');
+                    if (checkbox.is(':checked')) {
+                        fieldset.prop('disabled', false);
+                    } else {
+                        fieldset.prop('disabled', true);
+                    }
+
+                    calculatePrices();
+                }
+            });
+
+            $(document).on('change', '.qty-input, .ui-select', function () {
+                calculatePrices();
+            });
+
+            $(document).on('click', '.js-add-row', function (e) {
+                e.stopPropagation();
+                console.log('Add Size button clicked'); // Debugging line
+
+                const content = $(this).siblings('.content');
+                console.log('Content found:', content.length); // Debugging line
+
+                const fieldset = content.find('fieldset');
+                console.log('Fieldset found:', fieldset.length); // Debugging line
+
+                const newRow = `
+                    <div class="field-row js-field-row">
+                        <label class="field-group qty">
+                            <strong>QTY x</strong>
+                            <input type="number" class="form-control qty-input" min="1" value="1">
+                        </label>
+                        <label class="field-group ui">
+                            <strong>UI:</strong>
+                            <select class="form-control ui-select">
+                                <option value="28">Small (under 70 ui)</option>
+                                <option value="31" selected>Medium (70-90 ui)</option>
+                                <option value="34">Large (90+ ui)</option>
+                            </select>
+                        </label>
+                        <span class="btn-column">
+                            <button type="button" class="js-remove-row btn btn-danger btn-sm">Remove</button>
+                        </span>
+                    </div>`;
+                fieldset.append(newRow);
+
+                console.log('New row appended'); // Debugging line
+                console.log(fieldset.html()); // Debugging line to show the current fieldset content
+
+                // Recalculate prices immediately
+                calculatePrices();
+            });
+
+            $(document).on('click', '.js-remove-row', function (e) {
+                e.stopPropagation();
+                $(this).closest('.field-row').remove();
+                calculatePrices();
+            });
+
+            $('#color-select, #argon-gas, #construction-type, #installation').change(function () {
+                calculatePrices();
+            });
+        });
+    </script>
+
+</body>
+
+</html>
